@@ -116,36 +116,36 @@ data Statement = Assign String Expr
               | Pass
      deriving (Eq, Show, Read)
 
-type Run a = StateT [Env] (ExceptT String IO) a
+type Run a = StateT [(Int, Env)] (ExceptT String IO) a
 
-runRun :: Run a -> [Env] -> IO (Either String (a, [Env]))
+runRun :: Run a -> [(Int, Env)] -> IO (Either String (a, [(Int, Env)]))
 runRun p env = runExceptT (runStateT p env)
 
-set :: (Name, Val) -> Run ()
-set (s, i) = state $ (\(table:xs) -> ((), (Map.insert s i table):xs))
+set :: (Name, Val, Int) -> Run ()
+set (s, i, l) = state $ (\table -> ((), (l, Map.insert s i (snd $ head table)):table))
 
-exec :: Statement -> Run ()
-exec (Assign s v) = do
+exec :: Statement -> Int -> Run ()
+exec (Assign s v) l = do
                             st <- get
-                            Right val <- return $ runEval (head st) (eval v)
-                            set (s,val)
+                            Right val <- return $ runEval (snd $ head st) (eval v)
+                            set (s,val,l)
 
-exec (If cond s0 s1) = do
+exec (If cond s0 s1) l = do
                             st <- get
-                            Right (B val) <- return $ runEval (head st) (eval cond)
-                            if val then do exec s0 else do exec s1
+                            Right (B val) <- return $ runEval (snd $ head st) (eval cond)
+                            if val then do exec s0 l else do exec s1 l
 
-exec (While cond s) = do
+exec (While cond s) l = do
                             st <- get
-                            Right (B val) <- return $ runEval (head st) (eval cond)
-                            when val $ exec s >> exec (While cond s)
+                            Right (B val) <- return $ runEval (snd $ head st) (eval cond)
+                            when val $ exec s l >> exec (While cond s) l
 
-exec (Print e) = do
+exec (Print e) l = do
                             st <- get
-                            Right (val) <- return $ runEval (head st) (eval e)
+                            Right (val) <- return $ runEval (snd $ head st) (eval e)
                             liftIO $ System.print val
                             return ()
 
-exec (Seq s0 s1)  = do      exec s0 >> exec s1
-exec (Try s0 s1)  = do      catchError (exec s0) (\e -> exec s1)
-exec Pass         =         return ()
+exec (Seq s0 s1)  l = do    exec s0 l >> exec s1 l
+exec (Try s0 s1)  l = do    catchError (exec s0 l) (\e -> exec s1 l)
+exec Pass         _ =       return ()

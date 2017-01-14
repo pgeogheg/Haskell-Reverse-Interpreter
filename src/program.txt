@@ -3,5 +3,17 @@
   Assign "var2" (Add (Const (I 4)) (Const (I 7))) ,
   Assign "var1" (Const (B True)),
 
-  Seq (Assign "var3" (Const (I 10))) (Assign "var2" (Const (I 0)))
+  Seq
+    (Assign "var3" (Const (I 10)))
+    (Assign "var2" (Const (I 0)))
+  ,
+
+  Print (Sub (Const (I 3)) (Mul (Const (I 4)) (Var "var2"))),
+
+  If (Eq (Var "var3") (Var "var2")) (Assign "var5" (Const (B False))) (Assign "var6" (Const (I 6739203))),
+
+  Assign "loop" (Const (I 0)),
+
+  While (Lt (Var "loop") (Const (I 10))) (Assign "loop" (Add (Var "loop") (Const (I 1))))
+
 ]
