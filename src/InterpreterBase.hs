@@ -116,14 +116,23 @@ data Statement = Assign String Expr
               | Pass
      deriving (Eq, Show, Read)
 
+{-
+  This Run monadic transformer is taken from the lecture notes, and adapted
+  so that the state stores a list of tuples contain an int representing a
+  line of code and the associated environment.
+-}
+
 type Run a = StateT [(Int, Env)] (ExceptT String IO) a
 
+-- Interpret the run monad transformer.
 runRun :: Run a -> [(Int, Env)] -> IO (Either String (a, [(Int, Env)]))
 runRun p env = runExceptT (runStateT p env)
 
+-- Add a line, environment tuple to the state.
 set :: (Name, Val, Int) -> Run ()
 set (s, i, l) = state $ (\table -> ((), (l, Map.insert s i (snd $ head table)):table))
 
+-- Execute a statement.
 exec :: Statement -> Int -> Run ()
 exec (Assign s v) l = do
                             st <- get

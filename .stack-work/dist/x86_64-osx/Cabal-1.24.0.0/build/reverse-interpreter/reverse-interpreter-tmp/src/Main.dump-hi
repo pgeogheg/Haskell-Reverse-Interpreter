@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-01-14 17:45:21.698009 UTC
+2017-01-14 19:18:04.284909 UTC
 
 interface main@main:Main 8001
-  interface hash: c11fffcf1656284c2de81e83b76bea28
-  ABI hash: da057815aed71c238fa9512d9a58d294
-  export-list hash: 647de44c084a9b8e9297769fdbd9f909
+  interface hash: 0c1ed7351a7d0a7f8c1e78d11910dbb2
+  ABI hash: fb103fdf7c023a8fa0afb3fa51e8d4af
+  export-list hash: 3a3276ebc526d88e9c9281b97510826d
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: ca778c7262f7c7c3b3b8642d920c4403
   sig of: Nothing
@@ -24,7 +24,6 @@ exports:
   Main.prevLine
   Main.printHist
   Main.readProgram
-  Main.runQuit
   Main.LineNumber
 module dependencies: InterpreterBase
 package dependencies: array-0.5.1.1@array-0.5.1.1 base-4.9.0.0*
@@ -68,7 +67,6 @@ import  -/  InterpreterBase 37343360963f1a048d176f7a50215fc5
   Env 187ef4416b1d0843f60060ad5aecc5ad
   Eval a2505d8e51410d423c58a8c3bbcedd06
   Nil cf096aeb6bcb0338ce0eb82d24eec1cb
-  Pass ab390bef8288bfbac58909c0e3f66f27
   Run 7179c1a4697f8d3567743641643fe965
   Statement 6b26f8f294e163d060e2be5f9fa2db8e
   Val 5e7340a510e45b31cc3f53b486d00489
@@ -442,14 +440,12 @@ da4bf05f212a8a4f70d22c8d153234db
                                      <GHC.Base.String>_N
                                      <Data.Functor.Identity.Identity>_R
                                      <InterpreterBase.Val>_N))) }) -}
-d79cedd8d91f542137e73fc41ea9d8bd
+9a3dca97c63ab06876a76b55b9826fa3
   interpreterLoop ::
     [InterpreterBase.Statement]
     -> [(GHC.Types.Int, InterpreterBase.Env)]
     -> Main.LineNumber
-    -> GHC.Types.IO
-         (Data.Either.Either
-            GHC.Base.String ((), [(GHC.Types.Int, InterpreterBase.Env)]))
+    -> GHC.Types.IO ()
   {- Arity: 4, Strictness: <L,U><L,U><L,U(U)><S,U>,
      Unfolding: InlineRule (0, True, True)
                 Main.interpreterLoop1
@@ -457,26 +453,21 @@ d79cedd8d91f542137e73fc41ea9d8bd
                 (<[InterpreterBase.Statement]>_R
                  ->_R <[(GHC.Types.Int, InterpreterBase.Env)]>_R
                  ->_R <Main.LineNumber>_R
-                 ->_R Sym (GHC.Types.N:IO[0]
-                               <Data.Either.Either
-                                  GHC.Base.String
-                                  ((), [(GHC.Types.Int, InterpreterBase.Env)])>_R)) -}
-5bffb5556032a3a0dfb8efa90c32d0cc
+                 ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
+fa2a503b28f761300aa427ce50c2ea8c
   interpreterLoop1 ::
     [InterpreterBase.Statement]
     -> [(GHC.Types.Int, InterpreterBase.Env)]
     -> Main.LineNumber
     -> GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
-          Data.Either.Either
-            GHC.Base.String ((), [(GHC.Types.Int, InterpreterBase.Env)]) #)
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 4, Strictness: <L,U><L,U><L,U(U)><S,U> -}
-ee2faf2387ce5283fa7c7de37d3e8101
+f72f9581d287d6a8eae9414103df7cbc
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Main.main1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-ec7329c3d5b2a487c03c3bf0cf0fa65c
+f96385ce2ec57574af729f1568401e0f
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -554,7 +545,7 @@ ec7329c3d5b2a487c03c3bf0cf0fa65c
 a113322aa79b9df1ebb596c2b7d38496
   main11 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "src/program.txt"#) -}
-9851ddb265364df52914112c271fb8d1
+0948bbd1f33a2c2607bc1e717c47b500
   main12 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -565,11 +556,11 @@ a113322aa79b9df1ebb596c2b7d38496
 65cb3a063becae7389d73df47b87f068
   main2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "DONE!"#) -}
-4c6059aab3e4c8dc56e534b37579257b
+c94a4093894203e75e0edc982acc920f
   main3 :: GHC.Exception.SomeException
   {- Unfolding: (GHC.IO.Exception.$fExceptionIOException_$ctoException
                    Main.main4) -}
-32d18a69fac803bfe43e8e4f8a5d5a45
+ba5b914f3ea56194c37606f9b1678f5b
   main4 :: GHC.IO.Exception.IOException
   {- Unfolding: (GHC.IO.Exception.IOError
                    (GHC.Base.Nothing @ GHC.IO.Handle.Types.Handle)
@@ -578,27 +569,27 @@ a113322aa79b9df1ebb596c2b7d38496
                    Main.main5
                    (GHC.Base.Nothing @ Foreign.C.Types.CInt)
                    (GHC.Base.Nothing @ GHC.IO.FilePath)) -}
-f48de6ac03f0d48881455efdf72eea54
+069f996b1183cdc07cb2d09082dbd7ec
   main5 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
-                   "Pattern match failure in do expression at src/Main.hs:73:3-16"#) -}
-e747844d8daf3ab053ea47f3d0447acb
+                   "Pattern match failure in do expression at src/Main.hs:102:3-16"#) -}
+8c222fb4335502dea1fd59653bf11dd1
   main6 :: [(GHC.Types.Int, InterpreterBase.Env)]
   {- HasNoCafRefs,
      Unfolding: (GHC.Types.:
                    @ (GHC.Types.Int, InterpreterBase.Env)
                    Main.main7
                    (GHC.Types.[] @ (GHC.Types.Int, InterpreterBase.Env))) -}
-a2cc18951788d3c1df641ed0dfdd9962
+70c3b51223e95ff33576a78c962225c7
   main7 ::
     (GHC.Types.Int,
      Data.Map.Base.Map InterpreterBase.Name InterpreterBase.Val)
   {- HasNoCafRefs,
      Unfolding: ((Main.main8,
                   Data.Map.Base.Tip @ InterpreterBase.Name @ InterpreterBase.Val)) -}
-becdd76ad0b577cccd5b407c38e1435b
+479bfd3529558af1e2ad4b081ea1d27e
   main8 :: GHC.Types.Int
-  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 0#) -}
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0#) -}
 27ba35b173abc66cd4e0befb93975e4d
   main9 ::
     GHC.Prim.State# GHC.Prim.RealWorld
@@ -633,7 +624,7 @@ becdd76ad0b577cccd5b407c38e1435b
                                 @ 'GHC.Types.PtrRepLifted
                                 @ [InterpreterBase.Statement]
                                 Text.Read.readEither2 } } #) } }) -}
-46377bced3e670f75005995b70f53a57
+3049f5e98d863941f993cbf2c535f014
   newNum :: GHC.Types.Int -> GHC.Types.IO Main.LineNumber
   {- Arity: 2, HasNoCafRefs, Strictness: <L,U><S,U>,
      Unfolding: InlineRule (0, True, True)
@@ -642,7 +633,7 @@ becdd76ad0b577cccd5b407c38e1435b
                 (<GHC.Types.Int>_R
                  ->_R Sym (GHC.Types.N:IO[0]
                                <GHC.IORef.IORef (GHC.Types.Int, GHC.Types.Int)>_R)) -}
-a7101e4bb02103db4f6ad0b00aed117f
+a8a1722d29917de66dcb8fc059697bba
   newNum1 ::
     GHC.Types.Int
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -768,33 +759,6 @@ ab8fd650d3ee132791a47d744116838c
                 Main.main9
                   `cast`
                 (Sym (GHC.Types.N:IO[0] <[InterpreterBase.Statement]>_R)) -}
-d17193adb3d694162ea4bd38b36c7b4e
-  runQuit ::
-    GHC.Types.IO
-      (Data.Either.Either
-         GHC.Base.String ((), [(GHC.Types.Int, InterpreterBase.Env)]))
-  {- Unfolding: InlineRule (0, True, True)
-                Main.runQuit1
-                  `cast`
-                (Control.Monad.Trans.Except.N:ExceptT[0]
-                     <GHC.Base.String>_N
-                     <GHC.Types.IO>_R
-                     <((), [(GHC.Types.Int, InterpreterBase.Env)])>_N) -}
-5d8686ecb40c744a72680451236062e0
-  runQuit1 ::
-    Control.Monad.Trans.Except.ExceptT
-      GHC.Base.String
-      GHC.Types.IO
-      ((), [(GHC.Types.Int, InterpreterBase.Env)])
-  {- Unfolding: ((InterpreterBase.exec
-                    InterpreterBase.Pass
-                    Main.main8)
-                   `cast`
-                 (Control.Monad.Trans.State.Lazy.N:StateT[0]
-                      <[(GHC.Types.Int, InterpreterBase.Env)]>_N
-                      <Control.Monad.Trans.Except.ExceptT GHC.Base.String GHC.Types.IO>_R
-                      <()>_N)
-                   Main.main6) -}
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:
